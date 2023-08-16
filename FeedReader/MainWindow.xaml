@@ -1,0 +1,260 @@
+﻿<Window x:Class="FeedReader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FeedReader"
+        mc:Ignorable="d"
+        Title="Feed Reader" Height="600" Width="1000" MouseWheel="Window_MouseWheel" Loaded="Window_Loaded" KeyDown="Window_KeyDown" WindowStyle="None" MouseDown="OnMouseDownMove" AllowsTransparency="True" ResizeMode="CanResizeWithGrip">
+
+    
+    
+    <Window.Resources>
+        <!-- .... other resources .... -->
+
+        <!--A Style that affects all TextBlocks-->
+        <DataTemplate x:Key="myTaskTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="myTaskTemplate2">
+            <StackPanel>
+                <TextBlock Text="{Binding}" TextTrimming="CharacterEllipsis" LineHeight="20"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <Style x:Key="myLbiNoSelection" TargetType="ListBoxItem">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="IsHitTestVisible" Value="False" />
+        </Style>
+
+        <Style x:Key="myTblStyle" TargetType="TextBlock">
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        </Style>
+
+
+        <Style x:Key="DarkScrollbarStyle" TargetType="ScrollBar">
+            <Setter Property="Background" Value="#372b25"/>
+        </Style>
+
+        <Style x:Key="MyDarkCellStyle" TargetType="DataGridCell">
+            <Setter Property="Background" Value="Black"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Gray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="MyWhiteCellStyle" TargetType="DataGridCell">
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Gray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+    </Window.Resources>
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="gridrowBorder" Height="30"/>
+            <RowDefinition x:Name="gridrow1" Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" >
+
+            </ColumnDefinition>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+
+
+        <Button x:Name="buttonUpd" Grid.Column="0" Grid.Row="1" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Click="buttonUpdate">
+            <Image Source="/update.png"  ></Image>
+            <Button.ToolTip>
+                <ToolTip>
+                    Обновить
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="buttonDelSource" Grid.Column="0" Grid.Row="1" Width="20" Height="20" Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="buttonDeleteSource" KeyDown="buttonDeleteSourceKeyDown" >
+            <Image Source="/delete.png"  ></Image>
+            <Button.ToolTip>
+                <ToolTip>
+                    Удалить источник
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="buttonAddSrce" Grid.Column="0" Grid.Row="1" Width="20" Height="20" Margin="60,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="buttonAddSource">
+            <Image Source="/add.png"  ></Image>
+            <Button.ToolTip>
+                <ToolTip>
+                    Добавить новый источник
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="buttonMarkFeedsRead" Grid.Column="2" Grid.Row="1" Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="buttonMarkRead">
+            <Image Source="/read.png"  ></Image>
+            <Button.ToolTip>
+                <ToolTip>
+                    Отметить прочитанным (k)
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="buttonDeleteFeed" Grid.Column="2" Grid.Row="1" Width="20" Height="20" Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="buttonDelFeed">
+            <Image Source="/delete.png"  ></Image>
+            <Button.ToolTip>
+                <ToolTip>
+                    Удалить новость (delete)
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="buttonTheme" Grid.Column="2" Grid.Row="1" Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="buttonThemeClick">
+            <Image Source="/theme.png"  ></Image>
+            <Button.ToolTip>
+                <ToolTip>
+                    Сменить цветовую тему
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="buttonClose" Grid.Column="4" Grid.Row="0" Width="20" Height="20" Margin="0,5,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="buttonCloseClick">
+            <Image Source="/close.png"  ></Image>
+            <Button.ToolTip>
+                <ToolTip>
+                    Закрыть
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="buttonMaximize" Grid.Column="4" Grid.Row="0" Width="20" Height="20" Margin="0,5,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="buttonMaximizeClick">
+            <Image Source="/maximize.png"  ></Image>
+            <Button.ToolTip>
+                <ToolTip>
+                    Полноэкранный режим
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="buttonHide" Grid.Column="4" Grid.Row="0" Width="20" Height="20" Margin="0,5,55,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="buttonHideClick">
+            <Image Source="/hide.png"  ></Image>
+            <Button.ToolTip>
+                <ToolTip>
+                    Скрыть
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <DataGrid x:Name="dgFeeds" BorderThickness="0" FontWeight="Bold"  Grid.Column="0" Grid.Row="3" Margin="3,0,0,0" ItemsSource="{Binding Table}" GridLinesVisibility="None" HeadersVisibility="None" IsReadOnly="True" SelectionChanged="dgFeeds_SelectionChanged" SelectionMode="Single" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Column 1" Binding="{Binding SourceName}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="0.25*" MaxWidth="60" Header="Column 2" Binding="{Binding Count}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                
+            </DataGrid.Columns>
+            
+        </DataGrid>
+
+        <DataGrid Visibility="Hidden" x:Name="dgFeedsWhite" FontWeight="Bold" Grid.Column="0" Grid.Row="2" Margin="3,0,0,0" ItemsSource="{Binding Table}" GridLinesVisibility="None" HeadersVisibility="None" IsReadOnly="True" SelectionChanged="dgFeeds_SelectionChanged" SelectionMode="Single" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Column 1" Binding="{Binding SourceName}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="0.25*" MaxWidth="60" Header="Column 2" Binding="{Binding Count}"/>
+
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="buttonImg1" Grid.Column="0" Grid.Row="1" Width="20" Height="20" Margin="90,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/1.png"  ></Image>
+            <Button.ToolTip>
+                <ToolTip>
+                    Добавить новый источник
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="buttonImg2" Grid.Column="0" Grid.Row="1" Width="20" Height="20" Margin="90,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/2.png"  ></Image>
+            <Button.ToolTip>
+                <ToolTip>
+                    Добавить новый источник
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Button x:Name="buttonImg3" Grid.Column="0" Grid.Row="1" Width="20" Height="20" Margin="90,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/3.png"  ></Image>
+            <Button.ToolTip>
+                <ToolTip>
+                    Добавить новый источник
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <GridSplitter x:Name="gridsplitter3" Grid.Row="1" Grid.Column="1" ShowsPreview="False" Width="5"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+        <GridSplitter x:Name="gridsplitter1" Grid.Row="3" Grid.Column="1" ShowsPreview="False" Width="5"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+        <ListBox x:Name="listboxFeedsTitle" Grid.Row="2" Grid.RowSpan="3" Grid.Column="2" SelectionMode="Extended" SelectionChanged="OnTitleChanged" KeyDown="listboxFeedsTitle_KeyDown" MouseDoubleClick="listboxFeedsTitle_MouseDoubleClick" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="ToolTip" Value="{Binding}"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Width="200" Text="{Binding}" TextTrimming="CharacterEllipsis"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            
+        </ListBox>
+
+        <GridSplitter x:Name="gridsplitter4" Grid.Row="1" Grid.Column="3" ShowsPreview="False" Width="5"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+        <GridSplitter x:Name="gridsplitter2" Grid.Row="3" Grid.Column="3" ShowsPreview="False" Width="5"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+        <ListBox x:Name="listBoxContentFirst" BorderThickness="0" Height="Auto" Grid.Row="3" Grid.Column="4" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="14"
+         ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" MouseDoubleClick="listBoxContentFirst_MouseDoubleClick">
+        </ListBox>
+        
+    </Grid>
+</Window>

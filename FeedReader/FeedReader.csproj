@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="1.png" />
+    <None Remove="2.png" />
+    <None Remove="3.png" />
+    <None Remove="add.png" />
+    <None Remove="close.png" />
+    <None Remove="delete.png" />
+    <None Remove="hide.png" />
+    <None Remove="maximize.png" />
+    <None Remove="read.png" />
+    <None Remove="theme.png" />
+    <None Remove="update.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CodeHollow.FeedReader" Version="1.2.6" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="1.png" />
+    <Resource Include="2.png" />
+    <Resource Include="3.png" />
+    <Resource Include="add.png" />
+    <Resource Include="close.png" />
+    <Resource Include="delete.png" />
+    <Resource Include="hide.png" />
+    <Resource Include="maximize.png" />
+    <Resource Include="read.png" />
+    <Resource Include="theme.png" />
+    <Resource Include="update.png" />
+  </ItemGroup>
+
+</Project>

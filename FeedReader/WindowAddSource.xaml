@@ -1,0 +1,15 @@
+﻿<Window x:Class="FeedReader.WindowAddSource"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FeedReader"
+        mc:Ignorable="d"
+        Title="WindowAddSource" Height="200" Width="600">
+    <Grid Margin="0,0,-80,0">
+        <Label Content="Источник rss" HorizontalAlignment="Left" Margin="24,27,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textboxSource" HorizontalAlignment="Left" Margin="127,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="438" Height="22"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="508,92,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.25,0.122" Click="buttonAddClick"/>
+
+    </Grid>
+</Window>
