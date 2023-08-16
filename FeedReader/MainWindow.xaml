@@ -80,7 +80,7 @@
 
 
         <Button x:Name="buttonUpd" Grid.Column="0" Grid.Row="1" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Click="buttonUpdate">
-            <Image Source="/update.png"  ></Image>
+            <Image x:Name="imgUpdate" Source="/Images/update.png"  ></Image>
             <Button.ToolTip>
                 <ToolTip>
                     Обновить
@@ -89,7 +89,7 @@
         </Button>
 
         <Button x:Name="buttonDelSource" Grid.Column="0" Grid.Row="1" Width="20" Height="20" Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="buttonDeleteSource" KeyDown="buttonDeleteSourceKeyDown" >
-            <Image Source="/delete.png"  ></Image>
+            <Image x:Name="imgBtnDelSource" Source="/Images/delete.png"  ></Image>
             <Button.ToolTip>
                 <ToolTip>
                     Удалить источник
@@ -98,7 +98,7 @@
         </Button>
 
         <Button x:Name="buttonAddSrce" Grid.Column="0" Grid.Row="1" Width="20" Height="20" Margin="60,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="buttonAddSource">
-            <Image Source="/add.png"  ></Image>
+            <Image x:Name="imgAdd" Source="/Images/add.png"  ></Image>
             <Button.ToolTip>
                 <ToolTip>
                     Добавить новый источник
@@ -107,7 +107,7 @@
         </Button>
 
         <Button x:Name="buttonMarkFeedsRead" Grid.Column="2" Grid.Row="1" Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="buttonMarkRead">
-            <Image Source="/read.png"  ></Image>
+            <Image x:Name="imgRead" Source="/Images/read.png"  ></Image>
             <Button.ToolTip>
                 <ToolTip>
                     Отметить прочитанным (k)
@@ -116,7 +116,7 @@
         </Button>
 
         <Button x:Name="buttonDeleteFeed" Grid.Column="2" Grid.Row="1" Width="20" Height="20" Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="buttonDelFeed">
-            <Image Source="/delete.png"  ></Image>
+            <Image x:Name="imgDelete" Source="/Images/delete.png"  ></Image>
             <Button.ToolTip>
                 <ToolTip>
                     Удалить новость (delete)
@@ -125,7 +125,7 @@
         </Button>
 
         <Button x:Name="buttonTheme" Grid.Column="2" Grid.Row="1" Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="buttonThemeClick">
-            <Image Source="/theme.png"  ></Image>
+            <Image x:Name="imgTheme" Source="/Images/theme.png"  ></Image>
             <Button.ToolTip>
                 <ToolTip>
                     Сменить цветовую тему
@@ -134,7 +134,7 @@
         </Button>
 
         <Button x:Name="buttonClose" Grid.Column="4" Grid.Row="0" Width="20" Height="20" Margin="0,5,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="buttonCloseClick">
-            <Image Source="/close.png"  ></Image>
+            <Image x:Name="imgClose" Source="/Images/close.png"  ></Image>
             <Button.ToolTip>
                 <ToolTip>
                     Закрыть
@@ -143,7 +143,7 @@
         </Button>
 
         <Button x:Name="buttonMaximize" Grid.Column="4" Grid.Row="0" Width="20" Height="20" Margin="0,5,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="buttonMaximizeClick">
-            <Image Source="/maximize.png"  ></Image>
+            <Image x:Name="imgMaximize" Source="/Images/maximize.png"  ></Image>
             <Button.ToolTip>
                 <ToolTip>
                     Полноэкранный режим
@@ -152,7 +152,7 @@
         </Button>
 
         <Button x:Name="buttonHide" Grid.Column="4" Grid.Row="0" Width="20" Height="20" Margin="0,5,55,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="buttonHideClick">
-            <Image Source="/hide.png"  ></Image>
+            <Image x:Name="imgHide" Source="/Images/hide.png"  ></Image>
             <Button.ToolTip>
                 <ToolTip>
                     Скрыть
@@ -199,7 +199,7 @@
         </DataGrid>
 
         <Button x:Name="buttonImg1" Grid.Column="0" Grid.Row="1" Width="20" Height="20" Margin="90,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="/1.png"  ></Image>
+            <Image x:Name="img1" Source="/Images/1.png"  ></Image>
             <Button.ToolTip>
                 <ToolTip>
                     Добавить новый источник
@@ -208,7 +208,7 @@
         </Button>
 
         <Button x:Name="buttonImg2" Grid.Column="0" Grid.Row="1" Width="20" Height="20" Margin="90,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="/2.png"  ></Image>
+            <Image x:Name="img2" Source="/Images/2.png"  ></Image>
             <Button.ToolTip>
                 <ToolTip>
                     Добавить новый источник
@@ -217,7 +217,7 @@
         </Button>
 
         <Button x:Name="buttonImg3" Grid.Column="0" Grid.Row="1" Width="20" Height="20" Margin="90,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="/3.png"  ></Image>
+            <Image x:Name="img3" Source="/Images/3.png"  ></Image>
             <Button.ToolTip>
                 <ToolTip>
                     Добавить новый источник

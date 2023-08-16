@@ -19,6 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using CodeHollow.FeedReader;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FeedReader
 {
@@ -160,6 +161,25 @@ namespace FeedReader
             CreateUpdateTimer();
             CreateGarbageTimer();
             SetRotationTimer();
+
+            SetImagesSources();
+        }
+
+        private void SetImagesSources()
+        {
+            string currentPath = Environment.CurrentDirectory + @"/Images/";
+            imgUpdate.Source = new BitmapImage(new Uri(currentPath + "update.png", UriKind.Absolute));
+            imgBtnDelSource.Source = new BitmapImage(new Uri(currentPath + "delete.png", UriKind.Absolute));
+            imgAdd.Source = new BitmapImage(new Uri(currentPath + "add.png", UriKind.Absolute));
+            imgRead.Source = new BitmapImage(new Uri(currentPath + "read.png", UriKind.Absolute));
+            imgDelete.Source = new BitmapImage(new Uri(currentPath + "delete.png", UriKind.Absolute));
+            imgTheme.Source = new BitmapImage(new Uri(currentPath + "theme.png", UriKind.Absolute));
+            imgClose.Source = new BitmapImage(new Uri(currentPath + "close.png", UriKind.Absolute));
+            imgMaximize.Source = new BitmapImage(new Uri(currentPath + "maximize.png", UriKind.Absolute));
+            imgHide.Source = new BitmapImage(new Uri(currentPath + "hide.png", UriKind.Absolute));
+            img1.Source = new BitmapImage(new Uri(currentPath + "1.png", UriKind.Absolute));
+            img2.Source = new BitmapImage(new Uri(currentPath + "2.png", UriKind.Absolute));
+            img3.Source = new BitmapImage(new Uri(currentPath + "3.png", UriKind.Absolute));
         }
 
         private async Task UpdateData()

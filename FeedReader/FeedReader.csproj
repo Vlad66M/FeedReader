@@ -40,4 +40,8 @@
     <Resource Include="update.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 </Project>
